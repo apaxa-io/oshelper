@@ -1,1 +1,13 @@
 language: go
+sudo: false
+go:
+  - tip
+before_install:
+  - go get github.com/mattn/goveralls
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/modocache/gover
+script:
+  - go test -coverprofile=exechelper.coverprofile ./exechelper
+  - go test -coverprofile=main.coverprofile
+  - $HOME/gopath/bin/gover
+  - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -service travis-ci
