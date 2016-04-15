@@ -95,11 +95,11 @@ func TestExec(t *testing.T) {
 	for i, v := range test {
 		stdout, err := Exec(v.name, v.stdin, v.arg...)
 		if (err != nil) != v.err {
-			t.Errorf("\nTestExec - %v.\nError expected: %v, got: %v", i, v.err, err)
+			t.Errorf("Test-%v.\nError expected: %v, got: %v", i, v.err, err)
 		}
 		if !v.err && (err == nil) {
 			if !reflect.DeepEqual(stdout, v.stdout) {
-				t.Errorf("\nTestExec - %v.\nExpected stdout: %v\ngot: %v", i, v.stdout, stdout)
+				t.Errorf("Test-%v.\nExpected stdout: %v\ngot: %v", i, v.stdout, stdout)
 			}
 		}
 	}
